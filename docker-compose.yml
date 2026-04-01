@@ -30,6 +30,14 @@ services:
     ports:
       - ${GRAFANA_PORT}:3000
 
+  notifications:
+    build: ./notifications
+    env_file:
+      - .env
+    ports:
+      - ${WEBHOOK_PORT}:8080
+    restart: unless-stopped
+
 volumes:
   grafana-storage:
   influxdb-storage:
